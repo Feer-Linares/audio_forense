@@ -6,9 +6,7 @@ Created on Mon Oct  8 13:17:43 2018
 @author: Feer
 """
 from flask import Flask, render_template, request, redirect,flash,url_for
-#from flask_mongoalchemy import MongoAlchemy
 from flask_pymongo import PyMongo
-#from bson import ObjectId
 import os
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'audios'
@@ -50,4 +48,4 @@ def borrar ():
       
 if __name__ == '__main__':
       #db.create_all() #Cuando se ejecuta, se crea la bd
-      app.run(port = 8000)
+      app.run(port = 8000,debug=True)

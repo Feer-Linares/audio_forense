@@ -1,0 +1,10 @@
+header{
+	background-color: rgb(70, 130, 180);
+}
+h2{
+	text-transform: uppercase;
+	text-align: center;
+}
+.container .img-responsive{
+	margin: 0 auto;
+}
