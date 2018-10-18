@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}}
+<div class="container">
+	<section class="main row">
+		<article class="col-xs-12 col-sm-8 col-md-10 col-lg-12 text-justify">
+			<h1>SONIDO</h1>
+				<p>Desde un punto de vista físico, el sonido es una vibración que se propaga en un medio elástico (sólido, líquido o gaseoso). Cuando se refiere a sonido audible por el oído humano, puede definirse como la sensación percibida en el órgano del oído, producida por la vibración que se propaga en un medio elástico en forma de ondas.<br/> En la intención de producir sonido, se requiere indispensablemente lo siguiente:<br/></p>
+		</article>		
+	</section>
+	</div>
+	<div class="container">
+		<img src="{{ url_for('static', filename='img/elementos.png') }}" class="rounded mx-auto d-block" alt="..."/>
+	</div>
+	
+	<div class="container">
+		<div class="row text-justify">
+		<div class="col-xs-12 col-sm-6 col-md-3">
+			<h2 >Amplitud</h2>
+			<p>Se puede definir como la altura de la onda, es la distancia máxima que alcanza un punto al paso de las ondas respecto a su posición de equilibrio.<br>Esta característica está relacionada con la intensidad sonora. Por lo tanto, a menor amplitud de onda, menor intensidad y viceversa.</p>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+			<h2>Frecuencia</h2>
+			<p>Es el número de ciclos (ondas completas) que se producen una unidad de tiempo. La unidad de tiempo del sonido es el segundo y la frecuencia se mide en Hertz (Hz).</p>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+			<h2>Longitud de onda</h2>
+			<p>Hace referencia al tamaño de una onda, es decir, la distancia entre el principio y el final de una onda completa (ciclo). <br>La longitud de onda es inversamente proporcional a la frecuencia de una onda. Dado lo anterior, a mayor frecuencia menor longitud de onda y viceversa.</p>	
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+			<h2>Forma de onda</h2>
+			<p>Es la característica que permite distinguir una nota de la misma frecuencia e intensidad producida por instrumentos diferentes. La forma de onda viene determinada por los armónicos.</p>
+		</div>
+	</div>
+	</div>
+{% endblock %}
