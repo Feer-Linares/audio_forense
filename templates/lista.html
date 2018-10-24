@@ -1,41 +1,53 @@
 {% extends "base.html" %}
-{% block title %} {{ title }} {% endblock %}
+{% block script %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+{% endblock %}
+{% block title %} {{ title }} 
+
+{% endblock %}
 {% block content %}
-	<div class="container">
+	<div class="container ">
 		<h1 class="text-uppercase text-center">Lista de audios</h1>
 		<div class="table-responsive">
-			<table class="table table-striped table-bordered table-hover text-center">
-				<tr>
-					<th>Usuario</th>
-					<th>Tipo de audio</th>
-					
-					<th colspan="2">Opciones</th>
+			<table id="example" class="table table-striped table-bordered table-hover text-center">
+				<thead>
+					<tr>
+					<th >Usuario</th>
+					<th >Tipo de audio</th>
+					<TH >Archivo</TH>
+					<th colspan="2" >Opciones</th>
 				</tr>
-				{% for i in res %}		
+				</thead>
+				
+				<tbody>
+					{% for i in res %}		
 				<tr>
 					<td>{{ i.usuario }}</td> 	
 					<td>{{ i.tipo_audio }}</td> 
+					<td>{{ i.name_arch }}</td>
 					
-					<td><a href="/borrar?b=">Eliminar</a></td><td><a href="/obs">Observar</a></td>
+					<td><button class="eliminar btn btn-outline-secondary">Eliminar</button> </td> <td>Observar </td>
 				</tr>
-				{% endfor %}	
+				{% endfor %}
+				</tbody>	
+					
 			</table>
 		</div> 
 	</div>
-<script >
-	$ ( document ) .ready ( function ()  
-    {  
-        $ ( "table" ) .tablesorter ({
-        	sortList:[[0,0],[2,1]]
-        });
-        $ ("tbody tr").mouseenter(function(){
-        	$(this).css("background-color","#CCC");
-        })
-        $("tbody tr").mouseleave(function(){
-        	$(this).css("background-color","#6E6E6E");
-        })
-    }); 
-    
-</script>
-
+	<script type="text/javascript">
+		//eSTE MÉTODO SIRVE PARA ELIMINAR LOS DOCUMENTOS DE LA BD tomando como referencia el nombre de archivo
+		$(document).ready(function() {
+      $(".eliminar").click(function() {
+      	var dato = $(this).closest('tr').children('td:nth-child(3)').text();
+      	   if(confirm('¿Estás seguro de que quieres eliminar eate archivo: '+dato)){
+      	   	window.location.href = "/borrar/"+dato;
+      	   } else{
+      	   	window.location.href = "/lista"
+      	   }
+      	   
+      });
+    });
+	</script>
 {% endblock %}
