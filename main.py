@@ -44,16 +44,18 @@ def obs():
       title = "Observar Espectrograma"
       return render_template('espectrograma.html',title=title)
 
-@app.route('/find')
-def enc ():
-      res = new.find({'usuario' : 'User1', 'tipo_audio' : 'MAP'})
-      return render_template('lista.html',res = res)
+@app.route('/rep/<dato>')
+def enc (dato):
+      title="Reproductor"
+      song = dato 
+      return render_template('music.html',title=title, song = song)
 @app.route('/borrar/<dato>')
 def borrar(dato):
       res = new.delete_one({'name_arch':dato})
       return redirect(url_for('lista'))
-
-      
+#@app.route('/editar/<dato>')     
+#def editar(dato):
+      #res = 
 if __name__ == '__main__':
       #db.create_all() #Cuando se ejecuta, se crea la bd
       app.run(port = 8000,debug=True)

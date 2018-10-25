@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} {% endblock %}
+{% block script %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/flick/jquery-ui.css">
+<script src="js/jquery-ui-slider.js"></script>
+{% endblock %}
+{% block content %}
+<div class="container">
+	<h1>Reproductor de Audios</h1>
+	<audio controls="controls" autoplay source="static/music/{{song}}"> </audio>
+	<li><a href="javascript:playSong('{{ song }}');">{{ song }}</a></li>
+</div>
+	<script type="text/javascript">
+	function playSong (song){
+	$('audio').attr('src','/static/music/'+song);
+};
+</script>
+<div class="container">
+	<button type="button" class="btn btn-outline-dark"><a href="/lista">Atrás</a></button></div>
+{% endblock %}

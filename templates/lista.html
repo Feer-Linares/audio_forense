@@ -1,53 +1,60 @@
 {% extends "base.html" %}
 {% block script %}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jquery.dataTables.css') }}">
 {% endblock %}
 {% block title %} {{ title }} 
-
 {% endblock %}
 {% block content %}
 	<div class="container ">
 		<h1 class="text-uppercase text-center">Lista de audios</h1>
-		<div class="table-responsive">
-			<table id="example" class="table table-striped table-bordered table-hover text-center">
-				<thead>
-					<tr>
-					<th >Usuario</th>
-					<th >Tipo de audio</th>
-					<TH >Archivo</TH>
-					<th colspan="2" >Opciones</th>
-				</tr>
-				</thead>
-				
-				<tbody>
-					{% for i in res %}		
-				<tr>
-					<td>{{ i.usuario }}</td> 	
-					<td>{{ i.tipo_audio }}</td> 
-					<td>{{ i.name_arch }}</td>
-					
-					<td><button class="eliminar btn btn-outline-secondary">Eliminar</button> </td> <td>Observar </td>
-				</tr>
-				{% endfor %}
-				</tbody>	
-					
-			</table>
-		</div> 
 	</div>
+	<div class="container">
+		<table id="table_id" class="display table table-striped table-bordered dt-responsive nowrap">
+    <thead>
+        <tr>
+            <th >Usuario</th>
+			<th >Tipo de audio</th>
+			<TH >Archivo</TH>
+			<th colspan="2" >Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    	{% for i in res %}	
+        <tr>
+            <td>{{ i.usuario }}</td> 	
+			<td>{{ i.tipo_audio }}</td> 
+			<td>{{ i.name_arch }}</td>
+			<td><button class="eliminar btn btn-outline-secondary" >Eliminar</button> </td> <td> <button class="reproducir btn btn-outline-dark ">Reproducir</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+	</div>
+
 	<script type="text/javascript">
 		//eSTE MÉTODO SIRVE PARA ELIMINAR LOS DOCUMENTOS DE LA BD tomando como referencia el nombre de archivo
-		$(document).ready(function() {
-      $(".eliminar").click(function() {
-      	var dato = $(this).closest('tr').children('td:nth-child(3)').text();
-      	   if(confirm('¿Estás seguro de que quieres eliminar eate archivo: '+dato)){
+		$(document).ready(function(){
+			$('.eliminar').click(function(){
+				var dato = $(this).closest('tr').children('td:nth-child(3)').text();
+      	   if(confirm('¿Estás seguro que quieres eliminar este archivo: '+dato)){
       	   	window.location.href = "/borrar/"+dato;
       	   } else{
-      	   	window.location.href = "/lista"
+      	   	window.location.href = "/lista";
       	   }
-      	   
-      });
-    });
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.reproducir').click(function(){
+				var dato = $(this).closest('tr').children('td:nth-child(3)').text();
+      	   if(confirm('¿Estás seguro que quieres reproducir este archivo: '+dato)){
+      	   	window.location.href = "/rep/"+dato;
+      	   } else{
+      	   	window.location.href = "/lista";
+      	   }
+			});
+		});
 	</script>
 {% endblock %}
