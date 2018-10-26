@@ -17,5 +17,12 @@
 };
 </script>
 <div class="container">
-	<button type="button" class="btn btn-outline-dark"><a href="/lista">Atrás</a></button></div>
+	<button type="button" class="atras btn btn-outline-dark">Atrás</button></div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.atras').click(function(){
+      	   	window.location.href = "/lista";
+			});
+		});
+	</script>
 {% endblock %}
