@@ -53,9 +53,14 @@ def enc (dato):
 def borrar(dato):
       res = new.delete_one({'name_arch':dato})
       return redirect(url_for('lista'))
-#@app.route('/editar/<dato>')     
-#def editar(dato):
-      #res = 
+@app.route('/editar/<us>/<tip>/<arc>')     
+def editar(us,tip,arc):
+      title="Editar"
+      return render_template('editar.html',title=title,us=us,tip=tip, arc=arc)
+@app.route('/actualizar')
+def actualizar():
+      title="Actualizar"
+      return render_template('editar.html',title=title)
 if __name__ == '__main__':
       #db.create_all() #Cuando se ejecuta, se crea la bd
       app.run(port = 8000,debug=True)

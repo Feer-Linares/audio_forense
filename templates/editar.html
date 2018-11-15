@@ -3,14 +3,14 @@
 {% block content %}
 	<div class="container">
 		<h1 class="text-uppercase text-center">Añadir archivo</h1>
-		<form  method="POST" action="/upload" enctype="multipart/form-data" >
+		<form  method="POST" action="/actualizar" enctype="multipart/form-data" >
 			<div class="form-group">
 				<label for="user">Usuario: </label>
-				<input type="text" name="user" required/>
+				<input type="text" name="user" value="{{ us }} "required/>
 			</div>
 			<div class="form-group">
 			    <label for="exampleFormControlSelect1">Tipo de Audio:</label>
-			    <select class="form-control" id="exampleFormControlSelect1" name="opcion">
+			    <select class="form-control" id="exampleFormControlSelect1" name="opcion" >
 			  		<option value="1">ENT</option>
 			        <option value="2">FON</option>
 			        <option value="3">LEC</option>
@@ -20,13 +20,13 @@
 			</div>
 			<div class="form-group">
 				<label for="lugar">Área geográfica:</label>
-				<input type="text" class="text-uppercase" name="lugar" required/>
+				<input type="text" class="text-uppercase" name="lugar"  required/>
 			</div>
 			<div class="form-group">
 				<label for="file">Archivo:</label>
 			</div>
 			<div class="form-group">
-				<input type="text" name="file" required id="file">
+				<input type="text" name="file" required id="file" value="{{ arc }}">
 			</div>
 
 			<div class="form-group">
@@ -34,5 +34,7 @@
 			</div>			
 		</form>
 	</div>
-	
+	<script>
+    document.ready = document.getElementById("exampleFormControlSelect1").value = '2';
+</script>
 {%endblock%}

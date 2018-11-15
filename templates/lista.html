@@ -10,13 +10,14 @@
 		<h1 class="text-uppercase text-center">Lista de audios</h1>
 	</div>
 	<div class="container">
-		<table id="table_id" class="display table table-striped table-bordered dt-responsive nowrap">
+		<table id="table_id" class="display table text-center table-striped table-bordered dt-responsive nowrap">
     <thead>
         <tr>
             <th >Usuario</th>
 			<th >Tipo de audio</th>
 			<TH >Archivo</TH>
-			<th colspan="2" >Opciones</th>
+			<th>Origen</th>
+			<th colspan="3" >Opciones</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +26,8 @@
             <td>{{ i.usuario }}</td> 	
 			<td>{{ i.tipo_audio }}</td> 
 			<td>{{ i.name_arch }}</td>
-			<td><button class="eliminar btn btn-outline-secondary" >Eliminar</button> </td> <td> <button class="reproducir btn btn-outline-dark ">Reproducir</button></td>
+			<td>{{ i.area_geo }}</td>
+			<td><button class="eliminar btn btn-outline-primary" >Eliminar</button> </td> <td> <button class="reproducir btn btn-outline-secondary ">Reproducir</button></td><td><button class="editar btn btn-outline-success">Editar</button></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -51,6 +53,21 @@
 				var dato = $(this).closest('tr').children('td:nth-child(3)').text();
       	   if(confirm('¿Estás seguro que quieres reproducir este archivo: '+dato)){
       	   	window.location.href = "/rep/"+dato;
+      	   } else{
+      	   	window.location.href = "/lista";
+      	   }
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.editar').click(function(){
+				var us = $(this).closest('tr').children('td:nth-child(1)').text();
+				var tip = $(this).closest('tr').children('td:nth-child(2)').text();
+				var arc = $(this).closest('tr').children('td:nth-child(3)').text();
+      	   if(confirm('¿Estás seguro que quieres editar este archivo: '+arc)){
+      	   	window.location.href = "/editar/"+us+"/"+tip+"/"+arc;
+      	   	
       	   } else{
       	   	window.location.href = "/lista";
       	   }
