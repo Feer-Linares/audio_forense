@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 from scipy.fftpack import dct
 from itertools import *
 from random import *
+import pickle
 #print (os.getcwd())
 spath= r"C:\Users\feerz\Desktop\todos"
 
@@ -31,10 +32,11 @@ for roots, dirs, files in os.walk(spath,topdown=True):
 				clave=a[0]			
 				diccionario[clave]=parts 
 				D=librosa.amplitude_to_db(np.abs(librosa.stft(y)), ref=np.max)
-combinaciones=[]
 lista=[]
 lista1=[]
 tupla=()
+p =""
+p2 = ""
 aleatorio=randint(1,19)
 i=0
 for indice in diccionario.keys():
@@ -45,10 +47,16 @@ for indice in diccionario.keys():
 for elemento in combinations_with_replacement(lista, 2):
 	i=i+1
 	lista1=list(elemento)
+	for item in lista1:
+		uno=tuple(item[0].split(','))
+		uno=str(uno)
+		uno=uno.replace(")","")
+	p=str(lista1[0])
+	p2=str(lista1[1])
 	print "Iterac ",i
-	if (lista1[0]==lista1[1]):
+	if (p.startswith(uno)):
 		lista1.extend([1])
 	else:
 		lista1.extend([0])
 	print "\n",lista1, "\n"
-
+pickle.dump( lista1, open( "save.p", "wb" ) )
