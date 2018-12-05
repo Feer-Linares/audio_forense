@@ -59,4 +59,4 @@ for elemento in combinations_with_replacement(lista, 2):
 	else:
 		lista1.extend([0])
 	print "\n",lista1, "\n"
-pickle.dump( lista1, open( "save.p", "wb" ) )
+pickle.dump( lista1, open( "lista1.p", "wb" ) )
