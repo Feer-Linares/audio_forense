@@ -1,8 +1,2 @@
-auxilio.py
-database.db
-forms.py
-librosa-wav-muestreo-espectrograma.py
-_macro.html
-aux11.html
-espectro.html
 static/music/
+triplet-loss/
