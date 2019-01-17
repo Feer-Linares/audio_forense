@@ -2,6 +2,7 @@
 """
 Created on Fri Dic  07 12:18:33 2018
 @author: Feer
+Este archivo genera espectrogramas de tipo mel
 """
 import os
 import librosa

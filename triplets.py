@@ -3,8 +3,9 @@
 """Data handling to create triplets."""
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
-
-
+from prueba import *
+os.chdir(spath)
+listaArchivos=listaraarch(spath)
 class TripletStream:
     def __init__(self, streams, batch_size):
         self.classes = [c for c in streams]
@@ -27,30 +28,13 @@ class TripletStream:
         return self
 
     def __next__(self):
-        # Create random sample of original classes and compare classes
-        orig_classes = np.random.choice(self.classes, (self.batch_size,))
-        comp_classes = np.random.choice(self.classes, (self.batch_size,))
-
-        # Remove unintended matches, they must be different
-        unintended_matches = orig_classes == comp_classes
-        n_matches = sum(unintended_matches)
-        if n_matches:
-            comp_classes[unintended_matches] = (
-                comp_classes[unintended_matches] +
-                np.random.choice(self.random_deltas, n_matches)
-            ) % len(self.classes)
-
-        # Correct image always set as x1.
-        x = [self.pop(c) for c in orig_classes]
-        x1 = [self.pop(c) for c in orig_classes]
-        x2 = [self.pop(c) for c in comp_classes]
-
+        file = (np.random.choice(listaArchivos))
+        combinaciones=genParts(file,self.batch_size)
         samples = {
-            'x': np.array(x),
-            'x1': np.array(x1),
-            'x2': np.array(x2)
+            'x':np.array([c[0][1] for c in combinaciones]),
+            'x1':np.array([c[1][1] for c in combinaciones]),
+            'x2': np.array([c[2][1] for c in combinaciones])
         }
-
         labels = np.ones(self.batch_size)
         return samples, labels
 

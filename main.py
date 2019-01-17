@@ -1,9 +1,9 @@
-
 # -*- coding: utf-8 -*-
 """
 Created on Mon Oct  8 13:17:43 2018
 
 @author: Feer
+Este archivo es el principal para crear la interfaz de la webapp
 """
 from flask import Flask, render_template, request, redirect,flash,url_for
 from flask_pymongo import PyMongo
